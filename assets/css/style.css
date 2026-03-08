@@ -1,4 +1,5 @@
 
+
 body {
     display: flex; /* Use Flexbox layout for easy centering */
     justify-content: center; /* Center horizontally */
@@ -9,6 +10,16 @@ body {
 }
 
 
+
+/* Change body layout to grid for responsiveness */
+body {
+    display: grid; /* Change from flex to grid for layout control */
+    place-items: center; /* Center the login container both vertically and horizontally */
+    grid-template-columns: 1fr; /* Single column layout by default */
+}
+
+
+
 .login-container {
     width: 300px; /* Set fixed width for the login box */
     padding: 20px; /* Add space inside the container for content */
@@ -16,11 +27,9 @@ body {
     box-sizing: border-box; /* Include padding and border in the total width and height */
 }
 
-
 h2 {
     text-align: center; /* Center the "Login" text */
 }
-
 
 .form-group {
     margin-bottom: 15px; /* Space below each form group for separation */
@@ -47,4 +56,13 @@ button {
 .create-account {
     margin-top: 10px; /* Space above this section */
     text-align: center; /* Center the text and link inside */
+}
+
+/* Optional: Media query for small screens to improve responsiveness */
+@media (max-width: 600px) {
+    /* Make the login container more flexible on small screens */
+    .login-container {
+        width: 90%; /* Use most of the viewport width */
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
 }
