@@ -13,4 +13,17 @@
     padding: 20px; /* Add space inside the container for content */
     border: 1px solid #000; /* Add a simple border around the container (placeholder) */
     box-sizing: border-box; /* Include padding and border in the total width and height */
+} 
+
+h2 {
+    text-align: center; /* Center the "Login" text */
+} 
+
+.form-group {
+    margin-bottom: 15px; /* Space below each form group for separation */
+}
+
+label {
+    display: block; /* Make labels take full width to align inputs below */
+    margin-bottom: 5px; /* Small space between label and input */
 }
