@@ -6,4 +6,11 @@
     height: 100vh; /* Make the body take full viewport height */
     margin: 0; /* Remove default margin around body */
     font-family: Arial, sans-serif; /* Set a clean, sans-serif font for the page */
+} 
+
+.login-container {
+    width: 300px; /* Set fixed width for the login box */
+    padding: 20px; /* Add space inside the container for content */
+    border: 1px solid #000; /* Add a simple border around the container (placeholder) */
+    box-sizing: border-box; /* Include padding and border in the total width and height */
 }
