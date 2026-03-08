@@ -1,23 +1,26 @@
- /* Body*/
- body {
+
+body {
     display: flex; /* Use Flexbox layout for easy centering */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     height: 100vh; /* Make the body take full viewport height */
     margin: 0; /* Remove default margin around body */
     font-family: Arial, sans-serif; /* Set a clean, sans-serif font for the page */
-} 
+}
+
 
 .login-container {
     width: 300px; /* Set fixed width for the login box */
     padding: 20px; /* Add space inside the container for content */
     border: 1px solid #000; /* Add a simple border around the container (placeholder) */
     box-sizing: border-box; /* Include padding and border in the total width and height */
-} 
+}
+
 
 h2 {
     text-align: center; /* Center the "Login" text */
-} 
+}
+
 
 .form-group {
     margin-bottom: 15px; /* Space below each form group for separation */
@@ -26,4 +29,22 @@ h2 {
 label {
     display: block; /* Make labels take full width to align inputs below */
     margin-bottom: 5px; /* Small space between label and input */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Make inputs take full width of their container */
+    padding: 8px; /* Add padding inside the input for better readability */
+    box-sizing: border-box; /* Include padding in total width calculation */
+}
+
+button {
+    width: 100%; /* Make button span the full width of the container */
+    padding: 10px; /* Add padding inside the button for better click area */
+    cursor: pointer; /* Change cursor to pointer on hover for better UX */
+}
+
+.create-account {
+    margin-top: 10px; /* Space above this section */
+    text-align: center; /* Center the text and link inside */
 }
