@@ -1,0 +1,9 @@
+ /* Body*/
+ body {
+    display: flex; /* Use Flexbox layout for easy centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Make the body take full viewport height */
+    margin: 0; /* Remove default margin around body */
+    font-family: Arial, sans-serif; /* Set a clean, sans-serif font for the page */
+}
