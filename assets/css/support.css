@@ -1,0 +1,12 @@
+
+body {
+    background-color: #f8f9fa;
+  }
+  
+  h2, h5 {
+    font-weight: bold;
+  }
+  
+  button {
+    min-width: 90px;
+  }
