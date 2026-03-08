@@ -1,4 +1,4 @@
-/* Basic styling for Create Account page - no colors, just layout */
+
 
 body {
     display: grid; /* Center content using grid layout for responsiveness */
@@ -57,13 +57,10 @@ button {
     margin-top: 10px;
 }
 
-/* Optional: small spacing for optional fields (like employee ID) */
-#employeeId,
-#additionalInfo {
-    /* No extra styling, just for clarity */
-}
 
-/* Optional: media query for small screens (already included in previous examples) */
+
+
+
 @media (max-width: 600px) {
     .create-container {
         width: 95%;
