@@ -1,17 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triage-Your account</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/account.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>User Account</title>
+<!-- Bootstrap CSS for layout & styling -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Custom CSS -->
+<link rel="stylesheet" href="assets/css/account.css" />
 </head>
 <body>
-    \
-    <!-- Bootstrap JS (optional, for interactive components) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div class="container my-4">
+    <h2 class="mb-4 text-center">User Account Details</h2>
+
+    <!-- Personnel Details -->
+    <section class="mb-4">
+        <h4>Personnel Details</h4>
+        <form>
+            <div class="row mb-2">
+                <div class="col">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" class="form-control" placeholder="Full Name" />
+                </div>
+                <div class="col">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" class="form-control" placeholder="Address" />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" class="form-control" />
+                </div>
+                <div class="col">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" class="form-control" placeholder="Email" />
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Account Details -->
+    <section class="mb-4">
+        <h4>Account Details</h4>
+        <form>
+            <div class="row mb-2">
+                <div class="col">
+                    <label for="accountNumber">Account Number:</label>
+                    <input type="text" id="accountNumber" class="form-control" placeholder="Account Number" />
+                </div>
+                <div class="col">
+                    <label for="accountType">Account Type:</label>
+                    <select id="accountType" class="form-control">
+                        <option>Checking</option>
+                        <option>Savings</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <label for="status">Status:</label>
+                    <input type="text" id="status" class="form-control" placeholder="Status" />
+                </div>
+                <div class="col">
+                    <label for="employer">Employer:</label>
+                    <input type="text" id="employer" class="form-control" placeholder="Employer" />
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Document Upload -->
+    <section class="mb-4">
+        <h4>Upload Documents</h4>
+        <form>
+            <div class="mb-2">
+                <input type="file" class="form-control" />
+            </div>
+        </form>
+    </section>
+
+    <!-- Message Board -->
+    <section>
+        <h4>Message Board</h4>
+        <div class="mb-3">
+            <textarea class="form-control" rows="4" placeholder="Leave a message..."></textarea>
+        </div>
+        <div class="d-flex gap-2 mb-4">
+            <button class="btn btn-primary" type="button">Send Message</button>
+            <button class="btn btn-secondary" type="button">Handover</button>
+        </div>
+
+        <!-- Message History Placeholder -->
+        <h5>Message History</h5>
+        <div class="border p-3 mb-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>You:</strong> This is a placeholder message.
+                </div>
+                <button class="btn btn-sm btn-danger" type="button">Delete</button>
+            </div>
+        </div>
+        <!-- Add more messages here as needed -->
+    </section>
+</div>
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
