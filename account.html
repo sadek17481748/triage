@@ -9,66 +9,80 @@
 <!-- Custom CSS -->
 <link rel="stylesheet" href="assets/css/account.css" />
 </head>
-<body>
+<body> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <!-- Logo / Brand -->
+          <a class="navbar-brand" href="#" style="color: red; font-weight: bold;">Triage</a>
+          <!-- Toggler for mobile view -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Nav links -->
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html" style="color: black;">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 <div class="container my-4">
     <h2 class="mb-4 text-center">User Account Details</h2>
 
     <!-- Personnel Details -->
     <section class="mb-4">
         <h4>Personnel Details</h4>
-        <form>
+        <div>
             <div class="row mb-2">
                 <div class="col">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" class="form-control" placeholder="Full Name" />
+                    <strong>Name:</strong>
+                    <p id="name">John Doe</p>
                 </div>
                 <div class="col">
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" class="form-control" placeholder="Address" />
+                    <strong>Address:</strong>
+                    <p id="address">123 Main St, Cityville</p>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
-                    <label for="dob">Date of Birth:</label>
-                    <input type="date" id="dob" class="form-control" />
+                    <strong>Date of Birth:</strong>
+                    <p id="dob">1990-01-01</p>
                 </div>
                 <div class="col">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" class="form-control" placeholder="Email" />
+                    <strong>Email:</strong>
+                    <p id="email">john.doe@example.com</p>
                 </div>
             </div>
-        </form>
+        </div>
     </section>
 
     <!-- Account Details -->
     <section class="mb-4">
         <h4>Account Details</h4>
-        <form>
+        <div>
             <div class="row mb-2">
                 <div class="col">
-                    <label for="accountNumber">Account Number:</label>
-                    <input type="text" id="accountNumber" class="form-control" placeholder="Account Number" />
+                    <strong>Account Number:</strong>
+                    <p id="accountNumber">123456789</p>
                 </div>
                 <div class="col">
-                    <label for="accountType">Account Type:</label>
-                    <select id="accountType" class="form-control">
-                        <option>Checking</option>
-                        <option>Savings</option>
-                        <option>Other</option>
-                    </select>
+                    <strong>Account Type:</strong>
+                    <p id="accountType">Checking</p>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
-                    <label for="status">Status:</label>
-                    <input type="text" id="status" class="form-control" placeholder="Status" />
+                    <strong>Status:</strong>
+                    <p id="status">Active</p>
                 </div>
                 <div class="col">
-                    <label for="employer">Employer:</label>
-                    <input type="text" id="employer" class="form-control" placeholder="Employer" />
+                    <strong>Employer:</strong>
+                    <p id="employer">XYZ Inc.</p>
                 </div>
             </div>
-        </form>
+        </div>
     </section>
 
     <!-- Document Upload -->
