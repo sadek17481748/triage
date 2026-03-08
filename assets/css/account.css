@@ -1,0 +1,24 @@
+/* Basic layout adjustments for responsiveness */
+
+@media (max-width: 768px) {
+    /* Make sure sections are stacked and not too wide on smaller screens */
+    .container {
+      padding: 10px;
+    }
+  
+    /* reduce padding/margin inside sections for small screens */
+    section {
+      padding: 10px 0;
+    }
+  
+    /* Make message display better on small screens */
+    .border {
+      padding: 10px;
+    }
+  
+    /* Adjust button sizes if needed */
+    .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  } 
