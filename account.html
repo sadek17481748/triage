@@ -10,16 +10,13 @@
 <link rel="stylesheet" href="assets/css/account.css" />
 </head>
 <body> 
-       <!-- Navbar with Triage Logo -->
-       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Navbar with only the logo -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <!-- Triage Logo in Navbar as Brand -->
           <a class="navbar-brand" href="index.html" style="color: red; font-weight: bold;">Triage</a>
-          <!-- Toggler for mobile view -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <!-- Nav links -->
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
@@ -29,7 +26,6 @@
           </div>
         </div>
     </nav>
-  
 
 <div class="container my-4">
     <h2 class="mb-4 text-center">User Account Details</h2>
@@ -88,21 +84,12 @@
         </div>
     </section>
 
-    <!-- Upload Documents section -->
-<section class="mb-4">
-    <h4>Upload Documents</h4>
-    <form id="uploadForm">
-        <div class="mb-2">
-            <input type="file" id="fileInput" class="form-control" />
-        </div>
-        <button type="button" id="uploadBtn" class="btn btn-success">Upload</button>
-    </form>
-</section>
+    
 
-    <!-- Message Board -->
+    <!-- Message Board & Files -->
     <section>
         <h4>Message Board</h4>
-        <!-- Textarea for new message -->
+        <!-- Message input -->
         <div class="mb-3">
             <textarea id="messageInput" class="form-control" rows="4" placeholder="Leave a message..."></textarea>
         </div>
@@ -112,10 +99,10 @@
             <button class="btn btn-secondary" type="button">Handover</button>
         </div>
 
-        <!-- Message History Section -->
+        <!-- Message History -->
         <h5>Message History</h5>
         <div id="messageHistory" class="border p-3 mb-2">
-            <!-- Existing message example -->
+            <!-- Example message -->
             <div class="mb-2">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
@@ -125,61 +112,90 @@
                 </div>
             </div>
         </div>
+
+        <!-- Files Section -->
+        <h5>Files</h5>
+        <div id="filesSection" class="border p-3 mb-4" style="min-height:50px;">
+            <!-- Files will appear here -->
+        </div>
+        <!-- File input and Upload button -->
+        <input type="file" id="fileInput" class="form-control mb-2" />
+        <button type="button" id="uploadBtn" class="btn btn-success mb-4">Upload</button>
+
+        <!-- Download Links Container -->
+        <h5>Download Files</h5>
+        <div id="downloadLinks" class="border p-3" style="min-height:50px;">
+            <!-- Download links will be added here -->
+        </div>
     </section>
 </div>
 
-<!-- Bootstrap JS  -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- javascript -->
 <script>
-    const messageInput = document.getElementById('messageInput');
-    const sendBtn = document.getElementById('sendBtn');
-    const messageHistory = document.getElementById('messageHistory');
-  
-    sendBtn.addEventListener('click', () => {
-      const messageText = messageInput.value.trim();
-      if (messageText !== "") {
-        // Get current date and time
-        const now = new Date();
-        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-        const dateTimeString = now.toLocaleString(undefined, options);
-  
-        // Create message element
-        const messageDiv = document.createElement('div');
-  
-        // Set inner HTML with date/time
-        messageDiv.innerHTML = `
-          <div class="mb-2">
-            <div class="d-flex flex-column align-items-start">
-              <div>
-                <strong>You:</strong> ${messageText}
-              </div>
-              <div style="font-size: 0.8em; color: gray;">
-                ${dateTimeString}
-              </div>
-              <button class="btn btn-sm btn-danger mt-1" type="button">Delete</button>
-            </div>
-          </div>
-        `;
-        
-        // Append to message history
-        messageHistory.appendChild(messageDiv);
-        
-        // Clear input
-        messageInput.value = "";
-        
-        // Attach delete event
-        const deleteBtn = messageDiv.querySelector('.btn-danger');
-        deleteBtn.addEventListener('click', () => {
-          messageDiv.remove();
-        });
-      }
+const files = []; // store uploaded files
+
+// Handle file upload and create download links
+document.getElementById('uploadBtn').onclick = () => {
+  const input = document.getElementById('fileInput');
+  if (input.files.length > 0) {
+    Array.from(input.files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result;
+        const fileObj = {
+          name: file.name,
+          type: file.type,
+          dataUrl: dataUrl
+        };
+        files.push(fileObj);
+        addDownloadLink(fileObj);
+      };
+      reader.readAsDataURL(file);
     });
-  </script>
+    input.value = '';
+  } else {
+    alert('Please select a file.');
+  }
+};
 
+// Function to create download link
+function addDownloadLink(file) {
+  const link = document.createElement('a');
+  link.href = file.dataUrl;
+  link.download = file.name;
+  link.textContent = file.name;
+  link.className = 'd-block mb-2';
+  document.getElementById('downloadLinks').appendChild(link);
+}
 
+// Message sending with timestamp
+document.getElementById('sendBtn').onclick = () => {
+  const msgInput = document.getElementById('messageInput');
+  const messageText = msgInput.value.trim();
+  if (messageText === "") return;
 
+  const now = new Date();
+  const timestamp = now.toLocaleString();
+
+  const messageDiv = document.createElement('div');
+  messageDiv.className = 'mb-2';
+
+  messageDiv.innerHTML = `
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <strong>You:</strong> ${messageText}<br>
+        <small class="text-muted">${timestamp}</small>
+      </div>
+      <button class="btn btn-sm btn-danger" onclick="this.closest('.mb-2').remove()">Delete</button>
+    </div>
+  `;
+
+  document.getElementById('messageHistory').appendChild(messageDiv);
+  msgInput.value = '';
+};
+</script>
 
 </body>
 </html>
+
+
+

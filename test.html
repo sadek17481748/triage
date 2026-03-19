@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Upload and Download Files</title>
+<!-- Bootstrap CSS for styling (optional) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container my-4">
+<h2>Upload Files</h2>
+<input type="file" id="fileInput" multiple class="form-control mb-2" />
+<button id="uploadBtn" class="btn btn-primary mb-4">Upload</button>
+
+<h3>Files for Download</h3>
+<div id="filesContainer" class="border p-3" style="min-height:100px;">
+  <!-- Download links will appear here -->
+</div>
+</div>
+
+<script>
+const fileInput = document.getElementById('fileInput');
+const uploadBtn = document.getElementById('uploadBtn');
+const filesContainer = document.getElementById('filesContainer');
+
+uploadBtn.onclick = () => {
+  Array.from(fileInput.files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result;
+      // Create a download link
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = file.name;
+      link.textContent = file.name;
+      link.className = 'd-block mb-2';
+      filesContainer.appendChild(link);
+    };
+    reader.readAsDataURL(file);
+  });
+  fileInput.value = '';
+};
+</script>
+
+</body>
+</html>
