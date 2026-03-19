@@ -7,7 +7,24 @@ body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Font style */
     background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%); /* Gradient background */
   }
+   /* Style for the Triage text in the top left corner */
+.triage-logo {
+    position: fixed;        /* Fix position on the screen */
+    top: 20px;              /* Distance from top */
+    left: 20px;             /* Distance from left */
+    font-weight: bold;      /* Make it bold */
+    color: red;             /* Set text color to red */
+    font-size: 1.5rem;      /* Increase size for visibility */
+    text-decoration: none;  /* Remove underline if it's a link */
+    z-index: 1000;          /* Keep it above other elements */
+  }
   
+  /* Optional hover effect */
+  .triage-logo:hover {
+    text-decoration: underline;
+  } 
+
+
   /* Login container styling */
   .login-container {
     background: #fff; /* White background for contrast */
@@ -115,4 +132,6 @@ body {
     .login-container {
       padding: 30px 20px; /* Reduce padding on small screens */
     }
-  }
+  } 
+ 
+ 
