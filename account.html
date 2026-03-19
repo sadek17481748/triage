@@ -10,14 +10,11 @@
 <link rel="stylesheet" href="assets/css/account.css" />
 </head>
 <body> 
-    <!-- Triage in Top Left Corner -->
-    <a href="index.html" class="triage-logo">Triage</a>
-  
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <!-- Navbar with Triage Logo -->
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <!-- Logo / Brand -->
-          <a class="navbar-brand" href="#" style="color: red; font-weight: bold;">Triage</a>
+          <!-- Triage Logo in Navbar as Brand -->
+          <a class="navbar-brand" href="index.html" style="color: red; font-weight: bold;">Triage</a>
           <!-- Toggler for mobile view -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,6 +29,7 @@
           </div>
         </div>
     </nav>
+  
 
 <div class="container my-4">
     <h2 class="mb-4 text-center">User Account Details</h2>
@@ -129,68 +127,58 @@
     </section>
 </div>
 
-<!-- Bootstrap JS (optional) -->
+<!-- Bootstrap JS  -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Custom Script for Message Functionality -->
+<!-- javascript -->
 <script>
-  // Get DOM references
-  const messageInput = document.getElementById('messageInput');
-  const sendBtn = document.getElementById('sendBtn');
-  const messageHistory = document.getElementById('messageHistory');
-
-  // Send message on button click
-  sendBtn.addEventListener('click', () => {
-    const messageText = messageInput.value.trim();
-
-    if (messageText !== "") {
-      // Create a new message div
-      const messageDiv = document.createElement('div');
-
-      // Set inner HTML with message and delete button
-      messageDiv.innerHTML = `
-        <div class="mb-2">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <strong>You:</strong> ${messageText}
+    const messageInput = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const messageHistory = document.getElementById('messageHistory');
+  
+    sendBtn.addEventListener('click', () => {
+      const messageText = messageInput.value.trim();
+      if (messageText !== "") {
+        // Get current date and time
+        const now = new Date();
+        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        const dateTimeString = now.toLocaleString(undefined, options);
+  
+        // Create message element
+        const messageDiv = document.createElement('div');
+  
+        // Set inner HTML with date/time
+        messageDiv.innerHTML = `
+          <div class="mb-2">
+            <div class="d-flex flex-column align-items-start">
+              <div>
+                <strong>You:</strong> ${messageText}
+              </div>
+              <div style="font-size: 0.8em; color: gray;">
+                ${dateTimeString}
+              </div>
+              <button class="btn btn-sm btn-danger mt-1" type="button">Delete</button>
             </div>
-            <button class="btn btn-sm btn-danger" type="button">Delete</button>
           </div>
-        </div>
-      `;
+        `;
+        
+        // Append to message history
+        messageHistory.appendChild(messageDiv);
+        
+        // Clear input
+        messageInput.value = "";
+        
+        // Attach delete event
+        const deleteBtn = messageDiv.querySelector('.btn-danger');
+        deleteBtn.addEventListener('click', () => {
+          messageDiv.remove();
+        });
+      }
+    });
+  </script>
 
-      // Append the message to message history
-      messageHistory.appendChild(messageDiv);
 
-      // Clear input box
-      messageInput.value = '';
 
-      // Attach delete event to the new delete button
-      const deleteBtn = messageDiv.querySelector('.btn-danger');
-      deleteBtn.addEventListener('click', () => {
-        messageDiv.remove();
-      });
-    }
-  });
-</script>
-
-<!-- Custom CSS for the Triage Logo in Top Left -->
-<style>
-/* Style for the "Triage" text in top left corner */
-.triage-logo {
-  position: fixed;        /* Fix position on the screen */
-  top: 20px;              /* Distance from top */
-  left: 20px;             /* Distance from left */
-  font-weight: bold;      /* Make it bold */
-  color: red;             /* Set text color to red */
-  font-size: 1.5rem;      /* Increase size for visibility */
-  text-decoration: none;  /* Remove underline if it's a link */
-  z-index: 1000;          /* Keep it above other elements */
-}
-.triage-logo:hover {
-  text-decoration: underline;
-}
-</style>
 
 </body>
 </html>
