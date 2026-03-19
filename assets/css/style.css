@@ -1,68 +1,118 @@
-
-
+/* Body styling with gradient background */
 body {
-    display: flex; /* Use Flexbox layout for easy centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Make the body take full viewport height */
-    margin: 0; /* Remove default margin around body */
-    font-family: Arial, sans-serif; /* Set a clean, sans-serif font for the page */
-}
-
-
-
-/* Change body layout to grid for responsiveness */
-body {
-    display: grid; /* Change from flex to grid for layout control */
+    margin: 0;
+    height: 100vh; /* Full viewport height */
+    display: grid; /* Use grid layout for centering */
     place-items: center; /* Center the login container both vertically and horizontally */
-    grid-template-columns: 1fr; /* Single column layout by default */
-}
-
-
-
-.login-container {
-    width: 300px; /* Set fixed width for the login box */
-    padding: 20px; /* Add space inside the container for content */
-    border: 1px solid #000; /* Add a simple border around the container (placeholder) */
-    box-sizing: border-box; /* Include padding and border in the total width and height */
-}
-
-h2 {
-    text-align: center; /* Center the "Login" text */
-}
-
-.form-group {
-    margin-bottom: 15px; /* Space below each form group for separation */
-}
-
-label {
-    display: block; /* Make labels take full width to align inputs below */
-    margin-bottom: 5px; /* Small space between label and input */
-}
-
-input[type="text"],
-input[type="password"] {
-    width: 100%; /* Make inputs take full width of their container */
-    padding: 8px; /* Add padding inside the input for better readability */
-    box-sizing: border-box; /* Include padding in total width calculation */
-}
-
-button {
-    width: 100%; /* Make button span the full width of the container */
-    padding: 10px; /* Add padding inside the button for better click area */
-    cursor: pointer; /* Change cursor to pointer on hover for better UX */
-}
-
-.create-account {
-    margin-top: 10px; /* Space above this section */
-    text-align: center; /* Center the text and link inside */
-}
-
-/* Optional: Media query for small screens to improve responsiveness */
-@media (max-width: 600px) {
-    /* Make the login container more flexible on small screens */
-    .login-container {
-        width: 90%; /* Use most of the viewport width */
-        padding: 10px; /* Reduce padding for smaller screens */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Font style */
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%); /* Gradient background */
+  }
+  
+  /* Login container styling */
+  .login-container {
+    background: #fff; /* White background for contrast */
+    padding: 40px 30px; /* Inner spacing */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Shadow for depth */
+    width: 100%; /* Responsive width */
+    max-width: 400px; /* Max width on large screens */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
+  }
+  
+  /* Hover effect for login box */
+  .login-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  }
+  
+  /* Heading style */
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 700;
+  }
+  
+  /* Spacing between form groups */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Label styling */
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  /* Email and password input styles */
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  /* Focus state for inputs */
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.2);
+  }
+  
+  /* Button styles */
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  
+  /* Hover effect for button */
+  button:hover {
+    background-color: #0069d9;
+    transform: translateY(-1px);
+  }
+  
+  /* Links container styling */
+  .create-account,
+  .forgot-password {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+  
+  /* Link styles */
+  .create-account a,
+  .forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  /* Hover effect for links */
+  .create-account a:hover,
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive adjustments for small screens */
+  @media (max-width: 600px) {
+    body {
+      padding: 20px; /* Add padding to body for small screens */
     }
-}
+    .login-container {
+      padding: 30px 20px; /* Reduce padding on small screens */
+    }
+  }

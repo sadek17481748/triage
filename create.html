@@ -54,35 +54,6 @@
                 <input type="password" id="repeatPassword" name="repeatPassword" required />
             </div>
 
-            <!-- Security Question -->
-            <div class="form-group">
-                <label for="securityQuestion">Security Question:</label>
-                <select id="securityQuestion" name="securityQuestion" required>
-                    <option value="">Select a question</option>
-                    <option value="pet">What is your pet's name?</option>
-                    <option value="mother">Mother's maiden name?</option>
-                    <option value="school">Name of your first school?</option>
-                </select>
-            </div>
-
-            <!-- Security Answer -->
-            <div class="form-group">
-                <label for="securityAnswer">Answer:</label>
-                <input type="text" id="securityAnswer" name="securityAnswer" required />
-            </div>
-
-            <!-- Employee ID (Optional) -->
-            <div class="form-group">
-                <label for="employeeId">Employee ID (Optional):</label>
-                <input type="text" id="employeeId" name="employeeId" />
-            </div>
-
-            <!-- Additional info (Optional) -->
-            <div class="form-group">
-                <label for="additionalInfo">Additional Information (Optional):</label>
-                <textarea id="additionalInfo" name="additionalInfo" rows="3"></textarea>
-            </div>
-
             <!-- Submit Button -->
             <div class="form-group">
                 <button type="submit">Create Account</button>
@@ -95,13 +66,16 @@
     <script>
         document.getElementById("signupForm").addEventListener("submit", async (e) => {
             e.preventDefault();
-        
+
             const data = {
-                username: document.getElementById("email").value, // using email as username
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value,
+                dob: document.getElementById("dob").value,
+                phone: document.getElementById("phone").value,
                 email: document.getElementById("email").value,
                 password: document.getElementById("password").value
             };
-        
+
             const response = await fetch("http://localhost:3000/signup", {
                 method: "POST",
                 headers: {
@@ -109,10 +83,10 @@
                 },
                 body: JSON.stringify(data)
             });
-        
+
             const result = await response.json();
             alert(result.message);
         });
-        </script>
+    </script>
 </body>
 </html>

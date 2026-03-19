@@ -1,5 +1,6 @@
 // Import the Express framework for creating the server
 const express = require('express');
+const cors = require('cors'); // Added cors import
 
 // Import the Client class from 'pg' to interact with PostgreSQL
 const { Client } = require('pg');
@@ -10,6 +11,9 @@ const bcrypt = require('bcrypt');
 // Create an Express application instance
 const app = express();
 
+// Enable CORS for all routes
+app.use(cors()); // Added this line
+
 // Middleware to parse incoming JSON request bodies
 app.use(express.json());
 
@@ -17,43 +21,47 @@ app.use(express.json());
 const client = new Client({
   host: 'localhost',           // Database host
   user: 'postgres',            // Database username
-  password: 'YOUR_PASSWORD',   // Replace with your actual password
-  database: 'mywebsite',       // Database name
+  password: 'Sadek1748*',      // Your PostgreSQL password
+  database: 'mywebsite',       // Your database name
   port: 5432,                  // Default PostgreSQL port
 });
 
 // Connect to PostgreSQL database
 client.connect()
-  .then(() => console.log("Connected to PostgreSQL")) // Log success message
-  .catch(err => console.error(" Connection error", err)); // Log connection errors
+  .then(() => console.log("Connected to PostgreSQL"))
+  .catch(err => console.error("Connection error", err));
 
 // SIGNUP route: Handles user registration
 app.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
+  const {
+    firstName,
+    lastName,
+    dob,
+    phone,
+    email,
+    password
+  } = req.body;
 
-  // Validate input fields
-  if (!username || !email || !password) {
-    return res.status(400).json({ message: 'All fields required' });
+  // Validate required fields
+  if (!firstName || !lastName || !dob || !email || !password) {
+    return res.status(400).json({ message: 'All required fields must be filled' });
   }
 
   try {
-    // Hash the user's password with bcrypt (10 salt rounds)
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insert new user into the database with hashed password
+    // Insert new user into the database
     await client.query(
-      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3)',
-      [username, email, hashedPassword]
+      'INSERT INTO users (first_name, last_name, dob, phone, email, password) VALUES ($1, $2, $3, $4, $5, $6)',
+      [firstName, lastName, dob, phone, email, hashedPassword]
     );
 
-    // Send success response
     res.json({ message: 'User created successfully' });
   } catch (err) {
-    // Handle duplicate username or email (unique constraint violation)
-    if (err.code === '23505') { // PostgreSQL duplicate key error code
-      res.status(400).json({ message: 'Username or email already exists' });
+    if (err.code === '23505') { // duplicate key error
+      res.status(400).json({ message: 'Email already exists' });
     } else {
-      // Log other errors and send generic server error response
       console.error(err);
       res.status(500).json({ message: 'Database error' });
     }
@@ -64,37 +72,25 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
-  // Validate input fields
   if (!email || !password) {
     return res.status(400).json({ message: 'All fields required' });
   }
 
   try {
-    // Query database for user with provided email
-    const result = await client.query(
-      'SELECT * FROM users WHERE email = $1',
-      [email]
-    );
-
+    const result = await client.query('SELECT * FROM users WHERE email = $1', [email]);
     const user = result.rows[0];
 
-    // If user not found, respond with error
     if (!user) return res.status(400).json({ message: 'User not found' });
 
-    // Compare input password with hashed password stored in database
     const match = await bcrypt.compare(password, user.password);
-
-    // If passwords don't match, respond with error
     if (!match) return res.status(400).json({ message: 'Incorrect password' });
 
-    // Successful login
-    res.json({ message: 'Login successful', username: user.username });
+    res.json({ message: 'Login successful', username: user.first_name });
   } catch (err) {
-    // Log errors and send server error response
     console.error(err);
     res.status(500).json({ message: 'Database error' });
   }
 });
 
-// Start the server on port 3000
-app.listen(3000, () => console.log(' Server running on port 3000'));
+// Start the server
+app.listen(3000, () => console.log('Server running on port 3000'));
